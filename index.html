@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Distridose SAS | Dotaciones y Uniformes Empresariales</title>
+  <meta
+    name="description"
+    content="Distridose SAS. Dotaciones y uniformes empresariales, elementos DSST y productos de seguridad industrial en Cali."
+  />
+  <style>
+    :root {
+      --bg: #161b22;
+      --bg-soft: #202934;
+      --surface-dark: rgba(27, 36, 46, 0.84);
+      --surface-light: rgba(238, 230, 214, 0.96);
+      --surface-mid: rgba(212, 183, 143, 0.14);
+      --ink: #f3eee3;
+      --ink-dark: #17212b;
+      --muted: rgba(243, 238, 227, 0.72);
+      --muted-dark: rgba(23, 33, 43, 0.72);
+      --line: rgba(243, 238, 227, 0.12);
+      --brand: #c8642f;
+      --brand-2: #df7a42;
+      --sand: #d4b78f;
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top left, rgba(200, 100, 47, 0.24), transparent 20%),
+        radial-gradient(circle at 80% 20%, rgba(212, 183, 143, 0.12), transparent 18%),
+        linear-gradient(180deg, #161b22 0%, #202934 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(243, 238, 227, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(243, 238, 227, 0.03) 1px, transparent 1px);
+      background-size: 30px 30px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.45), transparent 80%);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: #0f141a;
+      color: #f7f2e8;
+      font-family: "Trebuchet MS", sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .topbar-inner,
+    .nav-inner {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .topbar-inner {
+      padding: 10px 0;
+    }
+
+    .nav {
+      position: relative;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: rgba(15, 20, 26, 0.82);
+      border-bottom: 1px solid rgba(243, 238, 227, 0.08);
+    }
+
+    .nav-inner {
+      padding: 18px 0;
+      align-items: center;
+    }
+
+    .brand-mark {
+      width: 190px;
+      height: auto;
+      filter: brightness(1.08);
+    }
+
+    .nav-links,
+    .actions,
+    .logo-grid,
+    .contact-list {
+      display: flex;
+    }
+
+    .nav-links {
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a,
+    .eyebrow,
+    .section-tag,
+    .mini-label,
+    .cta,
+    .footer-note {
+      font-family: "Trebuchet MS", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-links a {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--sand);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      padding: 34px 0 72px;
+    }
+
+    .hero-grid,
+    .story-layout,
+    .catalog-grid,
+    .product-grid,
+    .contact-grid,
+    .footer-grid,
+    .banner-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .hero-grid {
+      grid-template-columns: 0.95fr 1.05fr;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .eyebrow,
+    .section-tag,
+    .mini-label {
+      font-size: 0.74rem;
+      letter-spacing: 0.16em;
+      color: rgba(243, 238, 227, 0.74);
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 0.96;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: clamp(3.4rem, 8vw, 6.4rem);
+      margin-top: 14px;
+      max-width: 10ch;
+    }
+
+    h2 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    p,
+    li {
+      font-size: 1.03rem;
+      line-height: 1.72;
+    }
+
+    .hero-copy p {
+      max-width: 56ch;
+      margin: 24px 0 0;
+    }
+
+    .hero-logo {
+      width: 230px;
+      height: auto;
+      margin: 0 0 14px;
+    }
+
+    .actions {
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 999px;
+      background: var(--brand);
+      color: #fff;
+      font-size: 0.8rem;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .cta:hover,
+    .cta:focus-visible {
+      transform: translateY(-2px);
+      background: var(--brand-2);
+    }
+
+    .ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid rgba(243, 238, 227, 0.18);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 560px;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background:
+        linear-gradient(180deg, rgba(10, 14, 18, 0.18), rgba(10, 14, 18, 0.52)),
+        url("https://www.distridose.com/wp-content/uploads/2020/02/shop4_home_slider2.jpg") center/cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+      padding: 26px;
+    }
+
+    .hero-card,
+    .light-card,
+    .logo-item {
+      background: var(--surface-light);
+      color: var(--ink-dark);
+    }
+
+    .hero-card {
+      width: min(100%, 390px);
+      border-radius: 24px;
+      padding: 22px;
+      border: 1px solid rgba(23, 33, 43, 0.08);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-card strong {
+      display: block;
+      font-size: 1.35rem;
+      margin: 10px 0 8px;
+    }
+
+    section {
+      padding: 84px 0;
+    }
+
+    .logo-strip {
+      padding: 28px 0 8px;
+    }
+
+    .logo-grid {
+      gap: 16px;
+      justify-content: stretch;
+      flex-wrap: wrap;
+    }
+
+    .logo-item {
+      flex: 1 1 150px;
+      min-height: 86px;
+      border-radius: 22px;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      border: 1px solid rgba(23, 33, 43, 0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .logo-item img {
+      max-height: 42px;
+      width: 100%;
+      object-fit: contain;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 26px;
+      align-items: end;
+      margin-bottom: 30px;
+    }
+
+    .dark-card,
+    .product-card,
+    .contact-card {
+      background: var(--surface-dark);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .story-layout,
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .catalog-grid,
+    .product-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .dark-card,
+    .light-card,
+    .contact-card {
+      border-radius: 28px;
+      padding: 28px;
+    }
+
+    .dark-card ul,
+    .light-card ul {
+      margin: 16px 0 0;
+      padding-left: 18px;
+    }
+
+    .banner-grid {
+      grid-template-columns: 1.15fr 0.85fr;
+      margin-top: 24px;
+    }
+
+    .banner-card {
+      min-height: 260px;
+      border-radius: 28px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background-color: #10151b;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .banner-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15, 20, 26, 0.05), rgba(15, 20, 26, 0.54));
+    }
+
+    .banner-card.large {
+      background-image: url("https://www.distridose.com/wp-content/uploads/2020/02/shop4_home_slider1.jpg");
+      background-size: cover;
+    }
+
+    .banner-card.small {
+      background-image: url("https://www.distridose.com/wp-content/uploads/2020/02/shop4_home_ads3.jpg");
+      background-size: contain;
+      background-color: #e8ddca;
+    }
+
+    .banner-copy {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      z-index: 1;
+      max-width: 320px;
+    }
+
+    .product-card {
+      border-radius: 26px;
+      overflow: hidden;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 32px 82px rgba(0, 0, 0, 0.34);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 270px;
+      object-fit: contain;
+      object-position: center;
+      background: linear-gradient(180deg, rgba(212, 183, 143, 0.22), rgba(239, 232, 217, 0.66));
+      padding: 18px;
+    }
+
+    .product-copy {
+      padding: 22px;
+    }
+
+    .product-copy p {
+      margin: 10px 0 0;
+    }
+
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-list li {
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(243, 238, 227, 0.12);
+    }
+
+    footer {
+      padding: 32px 0 46px;
+      border-top: 1px solid rgba(243, 238, 227, 0.08);
+    }
+
+    .footer-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: start;
+    }
+
+    .footer-brand-panel {
+      background: rgba(239, 232, 217, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-brand-panel img {
+      width: 220px;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .footer-note {
+      color: var(--muted);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 { transition-delay: 80ms; }
+    .delay-2 { transition-delay: 160ms; }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .section-head,
+      .story-layout,
+      .contact-grid,
+      .footer-grid,
+      .banner-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .catalog-grid,
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links,
+      .topbar-inner,
+      .nav-inner {
+        justify-content: flex-start;
+      }
+
+      .topbar-inner,
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 10px 14px;
+      }
+
+      h1 {
+        font-size: clamp(2.7rem, 15vw, 4rem);
+      }
+
+      p,
+      li {
+        font-size: 0.98rem;
+      }
+
+      .hero-visual {
+        min-height: 420px;
+      }
+
+      .catalog-grid,
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .product-card img {
+        height: 180px;
+        padding: 14px;
+      }
+
+      .product-copy,
+      .dark-card,
+      .light-card,
+      .contact-card {
+        padding: 18px;
+      }
+
+      .logo-item {
+        flex: 1 1 calc(50% - 8px);
+        min-height: 74px;
+        padding: 14px;
+      }
+
+      .logo-item img {
+        max-height: 34px;
+      }
+
+      .banner-card {
+        min-height: 220px;
+      }
+
+      .banner-copy {
+        left: 18px;
+        right: 18px;
+        bottom: 18px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .catalog-grid,
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <span>Calle 34 #16-27, Barrio Atanasio Girardot, Cali - Valle del Cauca</span>
+      <span>602-4072042 | 318 421 2370</span>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <img class="brand-mark" src="https://www.distridose.com/wp-content/uploads/2022/06/Logotipo-Distridose-S.A.S-Dotaciones-y-Uniformes-Cali-2.svg" alt="Distridose SAS" />
+      <div class="nav-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#quienes-somos">Quienes Somos</a>
+        <a href="#lineas">Lineas</a>
+        <a href="#productos">Productos</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="shell hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow">D&amp;D Factory</div>
+          <img class="hero-logo" src="https://www.distridose.com/wp-content/uploads/2024/03/Logotipo-DD-Factory_final_15.03.2023_fondo-negro.svg" alt="D&D Factory" />
+          <h1>Dotaciones y uniformes empresariales</h1>
+          <p>
+            Distridose SAS es una empresa fabricante y distribuidora de productos
+            de alta calidad en servicio y respaldo, orientada a la seguridad,
+            comodidad y buena presentacion del trabajador.
+          </p>
+          <div class="actions">
+            <a class="cta" href="#productos">Ver productos</a>
+            <a class="cta ghost" href="#contacto">Solicitar cotizacion</a>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal delay-1">
+          <div class="hero-card">
+            <div class="mini-label" style="color: var(--muted-dark);">Estilo y seguridad al vestir</div>
+            <strong>Seguridad industrial, dotaciones y respaldo</strong>
+            <p>
+              Marca comercial de Distridose S.A.S. con presencia en Cali
+              y enfoque en dotaciones, uniformes y elementos DSST.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="logo-strip">
+      <div class="shell">
+        <div class="logo-grid reveal">
+          <div class="logo-item"><img src="https://www.distridose.com/wp-content/uploads/2019/09/shop26_logo1.png" alt="Logo 1" /></div>
+          <div class="logo-item"><img src="https://www.distridose.com/wp-content/uploads/2019/09/shop26_logo2.png" alt="Logo 2" /></div>
+          <div class="logo-item"><img src="https://www.distridose.com/wp-content/uploads/2019/09/shop26_logo3.png" alt="Logo 3" /></div>
+          <div class="logo-item"><img src="https://www.distridose.com/wp-content/uploads/2019/09/shop26_logo4.png" alt="Logo 4" /></div>
+          <div class="logo-item"><img src="https://www.distridose.com/wp-content/uploads/2019/09/shop26_logo5.png" alt="Logo 5" /></div>
+          <div class="logo-item"><img src="https://www.distridose.com/wp-content/uploads/2019/09/shop26_logo6.png" alt="Logo 6" /></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="quienes-somos">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-tag">Quienes Somos</div>
+            <h2>Distridose SAS</h2>
+          </div>
+          <p>
+            Empresa fabricante y distribuidora de productos de alta calidad
+            en servicio y respaldo, comprometida con la seguridad, comodidad
+            y profesionalismo empresarial.
+          </p>
+        </div>
+
+        <div class="story-layout">
+          <article class="light-card reveal">
+            <div class="section-tag" style="color: var(--muted-dark);">Mision</div>
+            <p>
+              Distridose SAS es una empresa fabricante y distribuidora de productos
+              de alta calidad en servicio y respaldo, logrando asi darle al trabajador
+              la seguridad y comodidad para un mejor desempeno en sus labores, alcanzando
+              y manteniendo el profesionalismo de nuestra empresa e incrementando el liderazgo
+              en el mercado local, regional y nacional.
+            </p>
+          </article>
+
+          <article class="light-card reveal delay-1">
+            <div class="section-tag" style="color: var(--muted-dark);">Vision</div>
+            <p>
+              Ser una empresa con una imagen innovadora, competitiva y vanguardista,
+              reconocida por el buen servicio, la fabricacion de productos de calidad
+              con insumos colombianos y el compromiso con la buena presentacion y seguridad empresarial.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="lineas">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-tag">Lineas</div>
+            <h2>Portafolio principal</h2>
+          </div>
+          <p>
+            Dotaciones, uniformes empresariales y elementos de seguridad industrial
+            para distintas necesidades del entorno laboral.
+          </p>
+        </div>
+
+        <div class="catalog-grid">
+          <article class="dark-card reveal">
+            <div class="section-tag">Categoria</div>
+            <h3>Calzado de seguridad industrial</h3>
+            <ul>
+              <li>Botas dielectricas</li>
+              <li>Botas de seguridad industrial</li>
+              <li>Proteccion y resistencia para uso laboral</li>
+            </ul>
+          </article>
+
+          <article class="dark-card reveal delay-1">
+            <div class="section-tag">Categoria</div>
+            <h3>Proteccion y accesorios</h3>
+            <ul>
+              <li>Accesorios</li>
+              <li>Proteccion para la cabeza</li>
+              <li>Proteccion respiratoria y bioseguridad</li>
+            </ul>
+          </article>
+
+          <article class="dark-card reveal delay-2">
+            <div class="section-tag">Categoria</div>
+            <h3>Dotaciones empresariales</h3>
+            <ul>
+              <li>Uniformes de vigilancia</li>
+              <li>Chalecos</li>
+              <li>Equipos para trabajar en altura</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="banner-grid">
+          <article class="banner-card large reveal">
+            <div class="banner-copy">
+              <div class="section-tag" style="color: rgba(255,255,255,0.74);">Linea visual</div>
+              <h3>Estilo y seguridad al vestir</h3>
+              <p>Composicion construida con banners ya presentes en el sitio actual.</p>
+            </div>
+          </article>
+          <article class="banner-card small reveal delay-1"></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="productos">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-tag">Productos destacados</div>
+            <h2>Seleccion visible del sitio</h2>
+          </div>
+          <p>
+            Productos y referencias visuales tomadas de los assets publicos de Distridose.
+          </p>
+        </div>
+
+        <div class="product-grid">
+          <article class="product-card reveal">
+            <img src="https://www.distridose.com/wp-content/uploads/2022/06/BOTA-PREMIUM-DE-SEGURIDAD-INDUSTRIAL-20922-scaled-1-300x300.jpg" alt="Bota premium de seguridad industrial" />
+            <div class="product-copy">
+              <div class="section-tag">Botas dielectricas</div>
+              <h3>Bota premium de seguridad</h3>
+              <p>Referencia de calzado de seguridad industrial dentro del catalogo publicado.</p>
+            </div>
+          </article>
+
+          <article class="product-card reveal delay-1">
+            <img src="https://www.distridose.com/wp-content/uploads/2022/06/BOTA-SOLDADOR-SEGURIDAD-INDUSTRIAL-20624-300x300.jpg" alt="Bota soldador seguridad industrial" />
+            <div class="product-copy">
+              <div class="section-tag">Calzado de seguridad industrial</div>
+              <h3>Bota soldador seguridad industrial</h3>
+              <p>Linea orientada a proteccion industrial y uso laboral exigente.</p>
+            </div>
+          </article>
+
+          <article class="product-card reveal delay-2">
+            <img src="https://www.distridose.com/wp-content/uploads/2022/06/NS9300011-300x300.jpg" alt="Accesorio de proteccion" />
+            <div class="product-copy">
+              <div class="section-tag">Accesorios</div>
+              <h3>Accesorios de proteccion</h3>
+              <p>Referencia visual del catalogo de accesorios y elementos de seguridad.</p>
+            </div>
+          </article>
+
+          <article class="product-card reveal">
+            <img src="https://www.distridose.com/wp-content/uploads/2022/06/chaleco-azul-2-frontal-scaled-300x300.jpg" alt="Chaleco de dotacion" />
+            <div class="product-copy">
+              <div class="section-tag">Chalecos</div>
+              <h3>Chaleco de dotacion</h3>
+              <p>Visual de prenda empresarial dentro de la linea de dotaciones.</p>
+            </div>
+          </article>
+
+          <article class="product-card reveal delay-1">
+            <img src="https://www.distridose.com/wp-content/uploads/2022/06/ns3200212-300x300.jpg" alt="Elemento de proteccion industrial" />
+            <div class="product-copy">
+              <div class="section-tag">Proteccion personal</div>
+              <h3>Elemento de seguridad industrial</h3>
+              <p>Activo del catalogo para reforzar la linea de proteccion laboral.</p>
+            </div>
+          </article>
+
+          <article class="product-card reveal delay-2">
+            <img src="https://www.distridose.com/wp-content/uploads/2023/02/overall_1-frontal.jpg-85x85.png" alt="Overol de vigilancia" />
+            <div class="product-copy">
+              <div class="section-tag">Seguridad y vigilancia</div>
+              <h3>Overol vigilancia</h3>
+              <p>Parte del repertorio visual de uniformes y dotaciones visibles en la web.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-tag">Contacto</div>
+            <h2>Distridose SAS en Cali</h2>
+          </div>
+          <p>
+            Informacion de contacto y ubicacion publicada actualmente en el sitio.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <article class="contact-card reveal">
+            <div class="section-tag">Visitanos</div>
+            <h3>Atanasio Girardot</h3>
+            <ul class="contact-list">
+              <li>Calle 34 #16-27</li>
+              <li>Barrio Atanasio Girardot</li>
+              <li>Cali - Valle del Cauca</li>
+            </ul>
+          </article>
+
+          <article class="light-card reveal delay-1">
+            <div class="section-tag" style="color: var(--muted-dark);">Canales</div>
+            <h3>Atencion y cotizaciones</h3>
+            <ul class="contact-list">
+              <li>Telefono: 602-4072042</li>
+              <li>WhatsApp: 318 421 2370</li>
+              <li>Marca comercial: D&amp;D Factory</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-grid">
+      <div class="footer-brand-panel">
+        <img src="https://www.distridose.com/wp-content/uploads/2024/03/Logotipo-DD-Factory_final_15.03.2023_fondo-negro.svg" alt="D&D Factory" />
+      </div>
+      <div class="footer-note">
+        Derechos reservados. Estilo y seguridad al vestir.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    document.querySelectorAll(".reveal").forEach((node) => observer.observe(node));
+  </script>
+</body>
+</html>
